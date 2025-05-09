@@ -95,8 +95,8 @@ class Program {
         string alumno = Console.ReadLine();
 
         var preguntas = db.Preguntas
-    .AsEnumerable() // Fuerza evaluación en memoria
-    .OrderBy(p => Guid.NewGuid()) // Aleatoriza
+    .AsEnumerable() 
+    .OrderBy(p => Guid.NewGuid()) 
     .Take(Math.Min(5, db.Preguntas.Count()))
     .ToList();
 
@@ -125,7 +125,7 @@ class Program {
                 EsCorrecta = esCorrecta
             });
 
-            // Mostrar si fue correcta o incorrecta
+            
             Console.WriteLine(esCorrecta ? "Respuesta correcta!" : "Respuesta incorrecta.");
         }
 
@@ -173,13 +173,13 @@ class Program {
     }
 
     static void MostrarReportes(DatosContexto db) {
-        // Mostrar todos los exámenes rendidos
+        
         Console.WriteLine("\n--- Todos los exámenes rendidos ---");
         foreach (var r in db.Resultados) {
             Console.WriteLine($"Alumno: {r.Alumno}, Nota: {r.Nota:F2}, Correctas: {r.CantidadCorrecta}/{r.TotalPreguntas}");
         }
 
-        // Filtrar resultados por nombre de alumno
+       
         Console.WriteLine("\n--- Filtrar resultados por nombre ---");
         Console.Write("Ingresar nombre del alumno para filtrar: ");
         var nombreBuscar = Console.ReadLine();
@@ -192,7 +192,6 @@ class Program {
             Console.WriteLine("No se encontraron resultados para ese alumno.");
         }
 
-        // Ranking de mejores alumnos
         Console.WriteLine("\n--- Ranking de mejores alumnos (mejor nota) ---");
         var ranking = db.Resultados
             .GroupBy(r => r.Alumno)
@@ -207,7 +206,7 @@ class Program {
             Console.WriteLine($"Alumno: {item.Alumno}, Mejor Nota: {item.MejorNota:F2}");
         }
 
-        // Informe estadístico por pregunta
+        
         Console.WriteLine("\n--- Estadísticas por pregunta ---");
         var estadisticas = db.Respuestas
             .GroupBy(r => r.PreguntaId)
