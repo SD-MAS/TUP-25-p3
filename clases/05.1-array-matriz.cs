@@ -8,7 +8,7 @@ var Vacio = "  ";
 var X     = "❌";
 var O     = "⭕️";
 
-// Tablero
+// Tablero (matriz 3x3 o un array bidimensional)
 string[,] tablero = new [,] {
     { Vacio, Vacio, Vacio },
     { Vacio, Vacio, Vacio },
@@ -32,8 +32,13 @@ void MostrarTablero(string mensaje = ""){
 
 // Leer un valor entero
 int Leer(string mensaje){
-    Write(mensaje);
-    return int.Parse(ReadLine());
+    while (true){
+        Write(mensaje);
+        var entrada = ReadLine();
+        if (int.TryParse(entrada, out int valor)){
+            return valor;
+        }
+    }
 }
 
 // Muestra un mensaje y espera una tecla
@@ -45,19 +50,42 @@ void Mensaje(string mensaje){
 // Verifica si el jugador gano
 bool Gano(string jugador){
     // Verifica que el jugador ocupe una fila, columna o diagonal
-    return 
-        (tablero[0, 0] == jugador && tablero[1, 1] == jugador && tablero[2, 2] == jugador) || // Diagonal principal
-        (tablero[0, 2] == jugador && tablero[1, 1] == jugador && tablero[2, 0] == jugador) || // Diagonal secundaria
-        (tablero[0, 0] == jugador && tablero[0, 1] == jugador && tablero[0, 2] == jugador) || // Fila 1
-        (tablero[1, 0] == jugador && tablero[1, 1] == jugador && tablero[1, 2] == jugador) || // Fila 2
-        (tablero[2, 0] == jugador && tablero[2, 1] == jugador && tablero[2, 2] == jugador) || // Fila 3
-        (tablero[0, 0] == jugador && tablero[1, 0] == jugador && tablero[2, 0] == jugador) || // Columna 1
-        (tablero[0, 1] == jugador && tablero[1, 1] == jugador && tablero[2, 1] == jugador) || // Columna 2
-        (tablero[0, 2] == jugador && tablero[1, 2] == jugador && tablero[2, 2] == jugador);   // Columna 3
+
+    // Diagonal principal                        
+    if (tablero[0, 0] == jugador &&      // X - -
+        tablero[1, 1] == jugador &&      // - X - 
+        tablero[2, 2] == jugador) {      // - - X
+        return true; 
+    }
+
+    // Diagonal secundaria
+    if (tablero[0, 2] == jugador &&      // - - X
+        tablero[1, 1] == jugador &&      // - X -
+        tablero[2, 0] == jugador) {      // X - -
+        return true; 
+    }
+    
+    // Recorrer por filas 
+    for (int f = 0; f < 3; f++){  
+        if (tablero[f, 0] == jugador &&  // X - -   - X -   - - X
+            tablero[f, 1] == jugador &&  // X - -   - X -   - - X
+            tablero[f, 2] == jugador)    // X - -   - X -   - - X
+            return true;
+    }
+
+    // Recorrer por columnas
+    for (int c = 0; c < 3; c++){
+        if( tablero[0, c] == jugador &&  // X X X   - - -   - - -
+            tablero[1, c] == jugador &&  // - - -   X X X   - - -
+            tablero[2, c] == jugador)    // - - -   - - -   X X X
+            return true;
+    }
+
+    return false;
 }
 
 // Verifica si hay empate
-bool Empate(){
+bool TableroCompleto(){
     for(int f = 0; f < 3; f++){
         for(int c = 0; c < 3; c++){
             if(tablero[f, c] == Vacio) return false;
@@ -89,9 +117,12 @@ while(true){
     if(Gano(jugador)){
         MostrarTablero($"🎉 Gano el jugador {jugador}");
         break;
-    } else if(Empate()){
+    } 
+    
+    if(TableroCompleto()){
         MostrarTablero("🤷🏻‍♂️ Empate");
         break;
     }
+    
     jugador = (jugador == X) ? O : X; // Cambia de jugador
 }

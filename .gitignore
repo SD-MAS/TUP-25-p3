@@ -1,1 +1,32 @@
-/.vscode
+# Archivos de Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Binarios y objetos compilados
+**/bin/
+**/obj/
+
+# Archivos del sistema
+**/.DS_Store
+Thumbs.db
+
+# Carpetas del proyecto que no queres subir
+fechas/
+/datos/Soluciones
+
+**/tempCodeRunnerFile.cs
+
+tempCodeRunnerFile.csharp
+/datos/obj
+/datos/obj
+/clases/tmp
+examen/respuestas-examen.md
+*.db-shm
+*.db-wal
+/datos/asistencias/tmp
+
+.fake
+Enunciados/.DS_Store
+Enunciados/.DS_Store
