@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace servidor.Migrations
 {
     /// <inheritdoc />
-    public partial class SegundaMigracion : Migration
+    public partial class NuevaBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,6 +25,23 @@ namespace servidor.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Compras", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Productos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
+                    Imagen = table.Column<string>(type: "TEXT", nullable: true),
+                    Precio = table.Column<double>(type: "REAL", nullable: false),
+                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Productos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,6 +71,23 @@ namespace servidor.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Productos",
+                columns: new[] { "Id", "Cantidad", "Descripcion", "Imagen", "Nombre", "Precio" },
+                values: new object[,]
+                {
+                    { 1, 10, "Heladera con freezer", "heladera.jpg", "Heladera", 150000.0 },
+                    { 2, 8, "Lavarropas automático carga frontal", "lavarropas.jpg", "Lavarropas", 120000.0 },
+                    { 3, 15, "Microondas digital 20L", "microondas.jpg", "Microondas", 45000.0 },
+                    { 4, 6, "Aire acondicionado split frío/calor", "aire.jpg", "Aire Acondicionado", 180000.0 },
+                    { 5, 12, "Horno eléctrico 45 litros", "horno.jpg", "Horno eléctrico", 60000.0 },
+                    { 6, 20, "Batidora de mano 5 velocidades", "batidora.jpg", "Batidora", 20000.0 },
+                    { 7, 18, "Licuadora de vaso 1.5L", "licuadora.jpg", "Licuadora", 25000.0 },
+                    { 8, 14, "Cafetera eléctrica 12 tazas", "cafetera.jpg", "Cafetera", 30000.0 },
+                    { 9, 25, "Plancha a vapor con suela antiadherente", "plancha.jpg", "Plancha", 18000.0 },
+                    { 10, 22, "Tostadora 2 rebanadas con regulador", "tostadora.jpg", "Tostadora", 15000.0 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ItemsCompra_CompraId",
                 table: "ItemsCompra",
@@ -71,6 +107,9 @@ namespace servidor.Migrations
 
             migrationBuilder.DropTable(
                 name: "Compras");
+
+            migrationBuilder.DropTable(
+                name: "Productos");
         }
     }
 }

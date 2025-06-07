@@ -1,6 +1,6 @@
 using servidor.Data;
 
-
+namespace servidor.Entidades {
     public class Producto
     {
         public int Id { get; set; }
@@ -10,4 +10,4 @@ using servidor.Data;
         public double Precio { get; set; }
         public int Cantidad { get; set; }
     }
-
+}
