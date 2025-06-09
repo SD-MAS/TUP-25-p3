@@ -30,7 +30,7 @@ app.UseCors("AllowClientApp");
 
 // Mapear rutas básicas
 app.MapGet("/", () => "Servidor API está en funcionamiento");
-app.MapGet("/verificar", async (AppDbContext db) =>
+app.MapGet("/productos", async (AppDbContext db) =>
 {
     var productos = await db.Productos.ToListAsync();
     return Results.Ok(productos);

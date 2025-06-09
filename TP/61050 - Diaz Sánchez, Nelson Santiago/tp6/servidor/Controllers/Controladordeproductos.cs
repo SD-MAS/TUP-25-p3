@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Mvc;
+using servidor.Data; 
+using System.Linq;
 [ApiController]
 [Route("api/[controller]")]
-public class ProductosController : ControllerBase
+public class ProductosController  : ControllerBase
 {
-    private readonly appdbContext _context;
+    private readonly AppDbContext _context;
 
-    public ControladorDeProductos(AppdbContext context)
+    public ProductosController(AppDbContext context)
     {
         _context = context;
     }
