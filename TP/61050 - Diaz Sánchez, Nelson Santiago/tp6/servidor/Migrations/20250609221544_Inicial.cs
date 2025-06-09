@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace servidor.Migrations
 {
     /// <inheritdoc />
-    public partial class NuevaBase : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,16 +76,16 @@ namespace servidor.Migrations
                 columns: new[] { "Id", "Cantidad", "Descripcion", "Imagen", "Nombre", "Precio" },
                 values: new object[,]
                 {
-                    { 1, 10, "Heladera con freezer", "heladera.jpg", "Heladera", 150000.0 },
-                    { 2, 8, "Lavarropas automático carga frontal", "lavarropas.jpg", "Lavarropas", 120000.0 },
-                    { 3, 15, "Microondas digital 20L", "microondas.jpg", "Microondas", 45000.0 },
-                    { 4, 6, "Aire acondicionado split frío/calor", "aire.jpg", "Aire Acondicionado", 180000.0 },
-                    { 5, 12, "Horno eléctrico 45 litros", "horno.jpg", "Horno eléctrico", 60000.0 },
-                    { 6, 20, "Batidora de mano 5 velocidades", "batidora.jpg", "Batidora", 20000.0 },
-                    { 7, 18, "Licuadora de vaso 1.5L", "licuadora.jpg", "Licuadora", 25000.0 },
-                    { 8, 14, "Cafetera eléctrica 12 tazas", "cafetera.jpg", "Cafetera", 30000.0 },
-                    { 9, 25, "Plancha a vapor con suela antiadherente", "plancha.jpg", "Plancha", 18000.0 },
-                    { 10, 22, "Tostadora 2 rebanadas con regulador", "tostadora.jpg", "Tostadora", 15000.0 }
+                    { 1, 10, "Heladera con freezer", "https://assets.hotsale.com.ar/uploads/offers/465371/680fe0b634761.jpg?w=500&h=375", "Heladera", 150000.0 },
+                    { 2, 8, "Lavarropas automático carga frontal", "https://authogar.vtexassets.com/arquivos/ids/198954-500-auto?v=638767894197430000&width=500&height=auto&aspect=true", "Lavarropas", 120000.0 },
+                    { 3, 15, "Microondas digital 20L", "https://thumbs.dreamstime.com/b/abra-el-horno-de-microondas-84772112.jpg", "Microondas", 45000.0 },
+                    { 4, 6, "Aire acondicionado split frío/calor", "https://static.vecteezy.com/system/resources/thumbnails/026/484/369/small/white-air-conditioner-and-remote-isolated-on-white-wall-background-cooling-product-for-in-summer-clipping-path-free-photo.jpg", "Aire Acondicionado", 180000.0 },
+                    { 5, 12, "Horno eléctrico 45 litros", "https://http2.mlstatic.com/D_Q_NP_2X_697835-MLU74245658329_012024-E.webp", "Horno eléctrico", 60000.0 },
+                    { 6, 20, "Batidora de mano 5 velocidades", "https://http2.mlstatic.com/D_Q_NP_2X_978238-MLU72674744248_112023-V.webp", "Batidora", 20000.0 },
+                    { 7, 18, "Licuadora de vaso 1.5L", "https://img.freepik.com/fotos-premium/licuadora-electrica_909293-2672.jpg?semt=ais_hybrid&w=740", "Licuadora", 25000.0 },
+                    { 8, 14, "Cafetera eléctrica 12 tazas", "https://http2.mlstatic.com/D_Q_NP_2X_956659-MLA83391699886_042025-V.webp", "Cafetera", 30000.0 },
+                    { 9, 25, "Plancha a vapor con suela antiadherente", "https://http2.mlstatic.com/D_Q_NP_2X_889265-MLA84235372773_042025-V.webp", "Plancha", 18000.0 },
+                    { 10, 22, "Tostadora 2 rebanadas con regulador", "https://http2.mlstatic.com/D_Q_NP_2X_957292-MLA52160650303_102022-V.webp", "Tostadora", 15000.0 }
                 });
 
             migrationBuilder.CreateIndex(

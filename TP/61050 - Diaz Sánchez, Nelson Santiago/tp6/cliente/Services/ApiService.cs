@@ -27,7 +27,7 @@ public class ApiService
     }
     public async Task<List<Producto>> ObtenerProductosAsync() {
         try {
-            var productos = await _httpClient.GetFromJsonAsync<List<Producto>>("/api/Controladordeproductos");
+            var productos = await _httpClient.GetFromJsonAsync<List<Producto>>("Controladordeproductos");
             return productos ?? new List<Producto>();
         } catch (Exception ex) {
             Console.WriteLine($"Error al obtener productos: {ex.Message}");

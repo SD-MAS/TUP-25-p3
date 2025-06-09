@@ -9,13 +9,13 @@ builder.Services.AddCors(options => {
         policy.WithOrigins("http://localhost:5177", "https://localhost:7221")
             .AllowAnyHeader()
             .AllowAnyMethod();
+       policy.WithOrigins("http://localhost:5177") 
+      .AllowAnyHeader()
+      .AllowAnyMethod();
     });
 });
 
-// Agregar controladores si es necesario
-builder.Services.AddControllers();
-
-
+builder.Services.AddControllers(); // <- ¡Esto es crucial!
 builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
@@ -25,7 +25,6 @@ if (app.Environment.IsDevelopment()) {
     app.UseDeveloperExceptionPage();
 }
 
-// Usar CORS con la política definida
 app.UseCors("AllowClientApp");
 
 // Mapear rutas básicas

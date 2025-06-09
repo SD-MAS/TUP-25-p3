@@ -92,7 +92,7 @@ namespace servidor.Migrations
                             Id = 1,
                             Cantidad = 10,
                             Descripcion = "Heladera con freezer",
-                            Imagen = "heladera.jpg",
+                            Imagen = "https://assets.hotsale.com.ar/uploads/offers/465371/680fe0b634761.jpg?w=500&h=375",
                             Nombre = "Heladera",
                             Precio = 150000.0
                         },
@@ -101,7 +101,7 @@ namespace servidor.Migrations
                             Id = 2,
                             Cantidad = 8,
                             Descripcion = "Lavarropas automático carga frontal",
-                            Imagen = "lavarropas.jpg",
+                            Imagen = "https://authogar.vtexassets.com/arquivos/ids/198954-500-auto?v=638767894197430000&width=500&height=auto&aspect=true",
                             Nombre = "Lavarropas",
                             Precio = 120000.0
                         },
@@ -110,7 +110,7 @@ namespace servidor.Migrations
                             Id = 3,
                             Cantidad = 15,
                             Descripcion = "Microondas digital 20L",
-                            Imagen = "microondas.jpg",
+                            Imagen = "https://thumbs.dreamstime.com/b/abra-el-horno-de-microondas-84772112.jpg",
                             Nombre = "Microondas",
                             Precio = 45000.0
                         },
@@ -119,7 +119,7 @@ namespace servidor.Migrations
                             Id = 4,
                             Cantidad = 6,
                             Descripcion = "Aire acondicionado split frío/calor",
-                            Imagen = "aire.jpg",
+                            Imagen = "https://static.vecteezy.com/system/resources/thumbnails/026/484/369/small/white-air-conditioner-and-remote-isolated-on-white-wall-background-cooling-product-for-in-summer-clipping-path-free-photo.jpg",
                             Nombre = "Aire Acondicionado",
                             Precio = 180000.0
                         },
@@ -128,7 +128,7 @@ namespace servidor.Migrations
                             Id = 5,
                             Cantidad = 12,
                             Descripcion = "Horno eléctrico 45 litros",
-                            Imagen = "horno.jpg",
+                            Imagen = "https://http2.mlstatic.com/D_Q_NP_2X_697835-MLU74245658329_012024-E.webp",
                             Nombre = "Horno eléctrico",
                             Precio = 60000.0
                         },
@@ -137,7 +137,7 @@ namespace servidor.Migrations
                             Id = 6,
                             Cantidad = 20,
                             Descripcion = "Batidora de mano 5 velocidades",
-                            Imagen = "batidora.jpg",
+                            Imagen = "https://http2.mlstatic.com/D_Q_NP_2X_978238-MLU72674744248_112023-V.webp",
                             Nombre = "Batidora",
                             Precio = 20000.0
                         },
@@ -146,7 +146,7 @@ namespace servidor.Migrations
                             Id = 7,
                             Cantidad = 18,
                             Descripcion = "Licuadora de vaso 1.5L",
-                            Imagen = "licuadora.jpg",
+                            Imagen = "https://img.freepik.com/fotos-premium/licuadora-electrica_909293-2672.jpg?semt=ais_hybrid&w=740",
                             Nombre = "Licuadora",
                             Precio = 25000.0
                         },
@@ -155,7 +155,7 @@ namespace servidor.Migrations
                             Id = 8,
                             Cantidad = 14,
                             Descripcion = "Cafetera eléctrica 12 tazas",
-                            Imagen = "cafetera.jpg",
+                            Imagen = "https://http2.mlstatic.com/D_Q_NP_2X_956659-MLA83391699886_042025-V.webp",
                             Nombre = "Cafetera",
                             Precio = 30000.0
                         },
@@ -164,7 +164,7 @@ namespace servidor.Migrations
                             Id = 9,
                             Cantidad = 25,
                             Descripcion = "Plancha a vapor con suela antiadherente",
-                            Imagen = "plancha.jpg",
+                            Imagen = "https://http2.mlstatic.com/D_Q_NP_2X_889265-MLA84235372773_042025-V.webp",
                             Nombre = "Plancha",
                             Precio = 18000.0
                         },
@@ -173,7 +173,7 @@ namespace servidor.Migrations
                             Id = 10,
                             Cantidad = 22,
                             Descripcion = "Tostadora 2 rebanadas con regulador",
-                            Imagen = "tostadora.jpg",
+                            Imagen = "https://http2.mlstatic.com/D_Q_NP_2X_957292-MLA52160650303_102022-V.webp",
                             Nombre = "Tostadora",
                             Precio = 15000.0
                         });
