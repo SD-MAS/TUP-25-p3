@@ -1,0 +1,87 @@
+@page "/carrito"
+@inject cliente.Services.CarritoService CarritoService
+@using cliente.Models
+
+<h1>Carrito de compras</h1>
+
+@if (carrito.Count == 0) 
+{
+    <p>El Carrito esta vacio</p>
+}
+else 
+{
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in carrito)
+            {
+                <tr>
+                    <td>@producto.Nombre</td>
+                    <td>$@producto.Precio</td>
+                    <td>
+    <button class="btn btn-sm btn-secondary me-1" @onclick="() => DisminuirCantidad(producto.Id)">-</button>
+    @producto.Cantidad
+    <button class="btn btn-sm btn-secondary ms-1" @onclick="() => IncrementarCantidad(producto.Id)">+</button>
+</td>
+                    <td>$@(producto.Precio * producto.Cantidad)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><strong>Total general:</strong> $@TotalGeneral</p>
+
+    <button class="btn btn-danger" @onclick="VaciarCarrito">Vaciar carrito</button>
+    <button class="btn btn-success" @onclick="ConfirmarCompra">Confirmar compra</button>
+}
+
+@code {
+    private List<Producto> carrito = new();
+
+    protected override void OnInitialized()
+    {
+        carrito = CarritoService.ObtenerCarrito();
+    }
+
+    private void VaciarCarrito()
+    {
+        carrito.Clear(); 
+        CarritoService.ObtenerCarrito().Clear(); 
+    }
+
+    private void ConfirmarCompra()
+    {
+        
+        Console.WriteLine("Compra confirmada");
+        VaciarCarrito();
+    }
+
+    private double TotalGeneral => carrito.Sum(p => p.Precio * p.Cantidad);
+    
+    
+    private void IncrementarCantidad(int productoId) {
+        var producto = carrito.FirstOrDefault(p => p.Id == productoId);
+        if (producto != null) {
+            producto.Cantidad++;
+        }
+    }
+
+    private void DisminuirCantidad(int productoId) {
+        var producto = carrito.FirstOrDefault(p => p.Id == productoId);
+        if (producto != null) {
+            producto.Cantidad--;
+        }
+        if (producto.Cantidad <= 0)
+        {
+            carrito.Remove(producto);
+        }
+
+}
+}

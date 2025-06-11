@@ -11,7 +11,7 @@ builder.Services.AddCors(options => {
     });
 });
 
-builder.Services.AddControllers(); // <- ¡Esto es crucial!
+builder.Services.AddControllers(); // 
 builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
@@ -23,11 +23,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowClientApp");
 
-app.UseRouting(); // <- ¡Necesario para los controladores!
+app.UseRouting(); 
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers(); // <- Registra tus controladores como ProductosController
+    endpoints.MapControllers();
 });
 
 app.Run();

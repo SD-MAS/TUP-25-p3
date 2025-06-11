@@ -1,8 +1,9 @@
 @page "/catalogo"
 @inject cliente.Services.ApiService ApiService
+@inject cliente.Services.CarritoService CarritoService
 @using cliente.Models
 <h1>Catálogo de productos</h1>
-
+<a href="./Carrito">probar</a>
 @if (productos == null)
 {
     <p>Cargando productos...</p>
@@ -34,18 +35,20 @@ else
 
 
 @code {
-    // Declarás la lista de productos
+    
     private List<Producto> productos;
 
     protected override async Task OnInitializedAsync()
     {
-        // Asumiendo que tenés un método en ApiService para obtener productos
         productos = await ApiService.ObtenerProductosAsync();
     }
 
     private void AgregarAlCarrito(int productoId)
     {
-        // Acá deberías implementar la lógica para agregar al carrito
-        Console.WriteLine($"Producto {productoId} agregado al carrito.");
+    var producto = productos.FirstOrDefault(p => p.Id == productoId);
+    if (producto != null)
+    {
+        CarritoService.AgregarProducto(producto);
+    }
     }
 }
