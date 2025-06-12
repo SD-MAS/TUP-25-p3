@@ -2,40 +2,53 @@
 @inject cliente.Services.ApiService ApiService
 @inject cliente.Services.CarritoService CarritoService
 @using cliente.Models
-<h1>Catálogo de productos</h1>
-<a href="./Carrito">probar</a>
-@if (productos == null)
-{
-    <p>Cargando productos...</p>
-}
-else if (productos.Count == 0)
-{
-    <p>No se encontraron productos.</p>
-}
-else
-{
-    <div class="row">
-        @foreach (var producto in productos)
-        {
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="@producto.Imagen" class="card-img-top" alt="@producto.Nombre" />
-                    <div class="card-body">
-                        <h5 class="card-title">@producto.Nombre</h5>
-                        <p class="card-text">@producto.Descripcion</p>
-                        <p><strong>Precio:</strong> $@producto.Precio</p>
-                        <p><strong>Stock:</strong> @producto.Cantidad</p>
-                        <button class="btn btn-primary" @onclick="@(() => AgregarAlCarrito(producto.Id))">Agregar al carrito</button>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center text-primary fw-bold">Catálogo de Productos</h1>
+
+    <div class="text-end mb-4">
+        <a href="/carrito" class="btn btn-outline-success">
+            🛒 Ver carrito
+        </a>
+    </div>
+
+    @if (productos == null)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando productos...</span>
+            </div>
+        </div>
+    }
+    else if (productos.Count == 0)
+    {
+        <p class="text-danger text-center">No se encontraron productos.</p>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var producto in productos)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@producto.Imagen" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@producto.Nombre</h5>
+                            <p class="card-text text-muted">@producto.Descripcion</p>
+                            <p><strong>Precio:</strong> $@producto.Precio</p>
+                            <p><strong>Stock:</strong> @producto.Cantidad</p>
+                            <button class="btn btn-primary mt-auto" @onclick="@(() => AgregarAlCarrito(producto.Id))">
+                                ➕ Agregar al carrito
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-}
-
+            }
+        </div>
+    }
+</div>
 
 @code {
-    
     private List<Producto> productos;
 
     protected override async Task OnInitializedAsync()
@@ -45,10 +58,10 @@ else
 
     private void AgregarAlCarrito(int productoId)
     {
-    var producto = productos.FirstOrDefault(p => p.Id == productoId);
-    if (producto != null)
-    {
-        CarritoService.AgregarProducto(producto);
-    }
+        var producto = productos.FirstOrDefault(p => p.Id == productoId);
+        if (producto != null)
+        {
+            CarritoService.AgregarProducto(producto);
+        }
     }
 }
