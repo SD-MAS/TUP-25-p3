@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace servidor.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class AgregarRelacionCompraItem : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,10 @@ namespace servidor.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Total = table.Column<double>(type: "REAL", nullable: false)
+                    Total = table.Column<double>(type: "REAL", nullable: false),
+                    NombreCliente = table.Column<string>(type: "TEXT", nullable: true),
+                    ApellidoCliente = table.Column<string>(type: "TEXT", nullable: true),
+                    EmailCliente = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,7 +56,7 @@ namespace servidor.Migrations
                     ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
                     Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
                     PrecioUnitario = table.Column<double>(type: "REAL", nullable: false),
-                    CompraId = table.Column<int>(type: "INTEGER", nullable: true)
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +65,8 @@ namespace servidor.Migrations
                         name: "FK_ItemsCompra_Compras_CompraId",
                         column: x => x.CompraId,
                         principalTable: "Compras",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ItemsCompra_Productos_ProductoId",
                         column: x => x.ProductoId,

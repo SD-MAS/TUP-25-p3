@@ -43,14 +43,15 @@ public class ControladorCarrito : ControllerBase
 
             _context.ItemsCompra.Add(itemcompra);
 
+
             var producto = await _context.Productos.FindAsync(item.ProductoId);
             if (producto != null)
             {
                 producto.Cantidad -= item.Cantidad;
             }
         }
-await _context.SaveChangesAsync();
 
+        await _context.SaveChangesAsync();
         return Ok(new { mensaje = "Compra registrada correctamente." });
     }
 }

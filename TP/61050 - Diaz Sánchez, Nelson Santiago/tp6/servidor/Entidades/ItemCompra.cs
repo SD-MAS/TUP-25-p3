@@ -11,5 +11,6 @@ namespace servidor.Entidades
         public int Cantidad { get; set; }
         public double PrecioUnitario { get; set; }
         public int CompraId { get; set; }
+        public Compra Compra { get; set; }
     }
 }

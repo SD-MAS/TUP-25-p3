@@ -23,7 +23,16 @@ namespace servidor.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ApellidoCliente")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EmailCliente")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombreCliente")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Total")
@@ -43,7 +52,7 @@ namespace servidor.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CompraId")
+                    b.Property<int>("CompraId")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("PrecioUnitario")
@@ -181,15 +190,19 @@ namespace servidor.Migrations
 
             modelBuilder.Entity("servidor.Entidades.ItemCompra", b =>
                 {
-                    b.HasOne("servidor.Entidades.Compra", null)
+                    b.HasOne("servidor.Entidades.Compra", "Compra")
                         .WithMany("Items")
-                        .HasForeignKey("CompraId");
+                        .HasForeignKey("CompraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("servidor.Entidades.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Compra");
 
                     b.Navigation("Producto");
                 });
