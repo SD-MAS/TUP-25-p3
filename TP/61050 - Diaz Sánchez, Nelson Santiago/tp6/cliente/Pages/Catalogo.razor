@@ -5,7 +5,7 @@
 
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-primary fw-bold">Catálogo de Productos</h1>
-    
+
     @if (mostrarMensaje)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,9 +16,15 @@
 
 
     <div class="text-end mb-4">
-        <a href="/carrito" class="btn btn-outline-success">
-            🛒 Ver carrito
-        </a>
+        <a href="/carrito" class="btn btn-outline-success position-relative">
+    🛒 Ver carrito
+    @if (CarritoService.CantidadTotal > 0)
+    {
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            @CarritoService.CantidadTotal
+        </span>
+    }
+</a>
     </div>
 
     @if (productos == null)
@@ -62,9 +68,11 @@
 
     private string mensaje = "";
     private bool mostrarMensaje = false; 
+
     protected override async Task OnInitializedAsync()
     {
         productos = await ApiService.ObtenerProductosAsync();
+        CarritoService.OnChange += StateHasChanged;
     }
 
     private async Task AgregarAlCarrito(int productoId)
@@ -74,11 +82,11 @@
         {
             CarritoService.AgregarProducto(producto);
             mensaje = $"✅ {producto.Nombre} fue agregado al carrito.";
-        mostrarMensaje = true;
+            mostrarMensaje = true;
 
-        
-        await Task.Delay(3000);
-        mostrarMensaje = false;
+            await Task.Delay(3000);
+            mostrarMensaje = false;
         }
     }
 }
+

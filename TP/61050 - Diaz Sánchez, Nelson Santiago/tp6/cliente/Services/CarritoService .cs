@@ -7,6 +7,8 @@ namespace cliente.Services {
     {
         private List<Producto> productosEnCarrito = new List<Producto>();
 
+        public int CantidadTotal => productosEnCarrito.Sum(p => p.Cantidad);
+
         public List<Producto> ObtenerCarrito()
         {
             return productosEnCarrito;
@@ -31,6 +33,12 @@ namespace cliente.Services {
                     Cantidad = 1
                 });
             }
+        }
+
+        public event Action OnChange;
+        public void NotificarCambio()
+        {
+            OnChange?.Invoke();
         }
     }
 }
