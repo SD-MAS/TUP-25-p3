@@ -5,6 +5,15 @@
 
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-primary fw-bold">Catálogo de Productos</h1>
+    
+    @if (mostrarMensaje)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @mensaje
+        <button type="button" class="btn-close" @onclick="() => mostrarMensaje = false" aria-label="Close"></button>
+    </div>
+}
+
 
     <div class="text-end mb-4">
         <a href="/carrito" class="btn btn-outline-success">
@@ -37,7 +46,7 @@
                             <p class="card-text text-muted">@producto.Descripcion</p>
                             <p><strong>Precio:</strong> $@producto.Precio</p>
                             <p><strong>Stock:</strong> @producto.Cantidad</p>
-                            <button class="btn btn-primary mt-auto" @onclick="@(() => AgregarAlCarrito(producto.Id))">
+                            <button class="btn btn-primary mt-auto" @onclick="() => AgregarAlCarrito(producto.Id)">
                                 ➕ Agregar al carrito
                             </button>
                         </div>
@@ -51,17 +60,25 @@
 @code {
     private List<Producto> productos;
 
+    private string mensaje = "";
+    private bool mostrarMensaje = false; 
     protected override async Task OnInitializedAsync()
     {
         productos = await ApiService.ObtenerProductosAsync();
     }
 
-    private void AgregarAlCarrito(int productoId)
+    private async Task AgregarAlCarrito(int productoId)
     {
         var producto = productos.FirstOrDefault(p => p.Id == productoId);
         if (producto != null)
         {
             CarritoService.AgregarProducto(producto);
+            mensaje = $"✅ {producto.Nombre} fue agregado al carrito.";
+        mostrarMensaje = true;
+
+        
+        await Task.Delay(3000);
+        mostrarMensaje = false;
         }
     }
 }
