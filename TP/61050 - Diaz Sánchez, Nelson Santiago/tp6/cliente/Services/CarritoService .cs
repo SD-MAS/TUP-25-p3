@@ -17,7 +17,7 @@ namespace cliente.Services {
             var productoExistente = productosEnCarrito.FirstOrDefault(p => p.Id == producto.Id);
             if (productoExistente != null)
             {
-                productoExistente.Cantidad += producto.Cantidad;
+                productoExistente.Cantidad += 1;
             }
             else
             {
