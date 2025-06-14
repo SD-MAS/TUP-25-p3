@@ -41,8 +41,9 @@
     }
     else
     {
+        <input type="text" class="form-control mb-4" placeholder="🔍 Buscar producto..." @bind="terminoBusqueda" />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            @foreach (var producto in productos)
+            @foreach (var producto in productosFiltrados)
             {
                 <div class="col">
                     <div class="card h-100 shadow-sm">
@@ -64,6 +65,11 @@
 </div>
 
 @code {
+    private string terminoBusqueda = "";
+
+private IEnumerable<Producto> productosFiltrados => productos
+    ?.Where(p => string.IsNullOrWhiteSpace(terminoBusqueda) || p.Nombre.Contains(terminoBusqueda, StringComparison.OrdinalIgnoreCase))
+    ?? Enumerable.Empty<Producto>();
     private List<Producto> productos;
 
     private string mensaje = "";
